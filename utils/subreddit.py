@@ -78,6 +78,9 @@ def get_subreddit_undone(
             continue
         if similarity_scores is not None:
             return submission, similarity_scores[i].item()
+        if len(submission.selftext) > (settings.config["settings"]["storymode_max_length"] or 2000):
+            print("new if statement triggered")
+            continue
         return submission
     print("all submissions have been done going by top submission order")
     VALID_TIME_FILTERS = [
